@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "915141320252",
+    "firebase_url": "https://mobifishtest.firebaseio.com",
+    "project_id": "mobifishtest",
+    "storage_bucket": "mobifishtest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915141320252:android:47dd62c2b258b32f",
+        "android_client_info": {
+          "package_name": "com.polotechnologies.mobifish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915141320252-m3fp184ocdc32d5o2r6618g867v761bt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.polotechnologies.mobifish",
+            "certificate_hash": "de53f42454179cf227e2956cdc29c1e186b8d4e5"
+          }
+        },
+        {
+          "client_id": "915141320252-sbmt087502vd6fritgmu6qqgr49f5og9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9NqqL_0TT2ERa70OqGGASHCZJ9_yWBt8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915141320252-sbmt087502vd6fritgmu6qqgr49f5og9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
