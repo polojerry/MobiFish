@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.FishDetailsFragment"
-    >
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.FishDetailsActivity">
 
     <ImageView
         android:id="@+id/productFishDetailImage"
@@ -44,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/productFishDetailName" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/productFishDetailPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -54,6 +53,5 @@
         app:layout_constraintEnd_toEndOf="@+id/productFishDetailDescription"
         app:layout_constraintStart_toStartOf="@+id/productFishDetailDescription"
         app:layout_constraintTop_toBottomOf="@+id/productFishDetailDescription" />
-
 
 </android.support.constraint.ConstraintLayout>

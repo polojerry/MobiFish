@@ -158,7 +158,7 @@ public class NewFishActivity extends AppCompatActivity {
 
         String id = mDatabaseReference.push().getKey();
 
-        final StorageReference storageReference = mStorageReference.child("newFishImages/" + userId + "/" + id + ".png");
+        final StorageReference storageReference = mStorageReference.child("newFishImages/" + id + ".png");
         storageReference.putFile(fullPhotoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

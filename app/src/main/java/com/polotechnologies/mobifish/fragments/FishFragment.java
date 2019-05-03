@@ -2,6 +2,7 @@ package com.polotechnologies.mobifish.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.polotechnologies.mobifish.R;
 import com.polotechnologies.mobifish.adapters.ProductFishRecyclerAdapter;
 import com.polotechnologies.mobifish.dataModels.NewFish;
+import com.polotechnologies.mobifish.ui.FishDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FishFragment extends Fragment {
+public class FishFragment extends Fragment implements ProductFishRecyclerAdapter.FishItemClickListener {
 
 
     RecyclerView productFishRecyclerView;
@@ -96,7 +98,17 @@ public class FishFragment extends Fragment {
             }
         });
 
-        productFishRecyclerAdapter = new ProductFishRecyclerAdapter(mContext,mFishItems);
+        productFishRecyclerAdapter = new ProductFishRecyclerAdapter(mContext,mFishItems,this);
         productFishRecyclerView.setAdapter(productFishRecyclerAdapter);
+    }
+
+    @Override
+    public void onFishItemClick(String fishName, String fishDescription, String fishPrice, String fishImageUrl) {
+        Intent startFishDetailsActivity = new Intent(getActivity().getBaseContext(), FishDetailsActivity.class);
+            startFishDetailsActivity.putExtra("fishName", fishName);
+            startFishDetailsActivity.putExtra("fishDescription", fishDescription);
+            startFishDetailsActivity.putExtra("fishPrice", fishPrice);
+            startFishDetailsActivity.putExtra("fishImageUrl", fishImageUrl);
+            getActivity().startActivity(startFishDetailsActivity);
     }
 }

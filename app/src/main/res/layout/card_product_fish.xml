@@ -9,7 +9,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,18 +24,20 @@
         <TextView
             android:id="@+id/productFishName"
             android:layout_width="wrap_content"
+            android:layout_below="@id/productFish"
             android:textSize="20sp"
             android:layout_height="wrap_content"
             android:text="Nile Perch"/>
 
         <TextView
             android:id="@+id/productFishPrice"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ksh 200"/>
+            android:layout_below="@id/productFishName"
+            android:text="Ksh 200"
+            android:textSize="20sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>

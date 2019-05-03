@@ -19,10 +19,13 @@ public class ProductFishRecyclerAdapter extends RecyclerView.Adapter<ProductFish
 
     Context mContext;
     List<NewFish> newFishProducts;
+    //Member Variable for OnClickListener
+    final private FishItemClickListener mOnClickListener;
 
-    public ProductFishRecyclerAdapter(Context mContext, List<NewFish> newFishProducts) {
+    public ProductFishRecyclerAdapter(Context mContext, List<NewFish> newFishProducts, FishItemClickListener fishItemClickListener) {
         this.mContext = mContext;
         this.newFishProducts = newFishProducts;
+        this.mOnClickListener = fishItemClickListener;
     }
 
     @NonNull
@@ -52,7 +55,7 @@ public class ProductFishRecyclerAdapter extends RecyclerView.Adapter<ProductFish
         return newFishProducts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView mFishName;
         TextView mFishPrice;
         TextView mFishDescription;
@@ -63,6 +66,33 @@ public class ProductFishRecyclerAdapter extends RecyclerView.Adapter<ProductFish
             mFishName = itemView.findViewById(R.id.productFishName);
             mFishPrice = itemView.findViewById(R.id.productFishPrice);
             mFishImage = itemView.findViewById(R.id.productFish);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            //get the position of clicked item
+            int clickedPosition = getAdapterPosition();
+
+            NewFish mNewFish = newFishProducts.get(clickedPosition);
+
+            String fishName = mNewFish.getFishName();
+            String fishDescription = mNewFish.getFishDescriprion();
+            String fishPrice = mNewFish.getFishPrice();
+            String fishUrl = mNewFish.getFishImageURl();
+
+            mOnClickListener.onFishItemClick(fishName, fishDescription, fishPrice,fishUrl);
+
+        }
+    }
+
+    //Interface defining our listener
+    public interface FishItemClickListener {
+        /**
+         * Method that takes in 5 parameters that is , fishName, fishDescription, fishPrice, fishImageUrl
+         * to be passed to the new Activity
+         * */
+        void onFishItemClick(String fishName, String fishDescription, String fishPrice, String fishImageUrl);
     }
 }

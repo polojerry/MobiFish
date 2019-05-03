@@ -2,6 +2,7 @@
     <string name="app_name">MobiFish</string>
     <string name="button">Button</string>
     <string name="login_button_text">Login</string>
+    <string name="signUp_button_text">Sign Up</string>
     <string name="logo">Logo</string>
     <string name="title_activity_fish">FishActivity</string>
     <string name="sign_out">Sign Out</string>
@@ -20,4 +21,10 @@
     <string name="hint_description">Description</string>
     <string name="hint_post_fish">Post Fish</string>
     <string name="contentDescription_new_fish_image">New Fish Image</string>
+
+    <string-array name="user_category">
+        <item>Fisher Man</item>
+        <item>Customer</item>
+    </string-array>
+
 </resources>
