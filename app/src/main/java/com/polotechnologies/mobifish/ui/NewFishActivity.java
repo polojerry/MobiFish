@@ -205,13 +205,16 @@ public class NewFishActivity extends AppCompatActivity {
         String newFishPrice=Objects.requireNonNull(mFishPrice.getText()).toString().trim();
         String newFishDescription=Objects.requireNonNull(mFishDescriprion.getText()).toString().trim();
 
-
+        String userID = mAuth.getCurrentUser().getUid();
+        String contact = mAuth.getCurrentUser().getPhoneNumber();
         NewFish newFish = new NewFish(
+                id,
                 newFishName,
                 newFishPrice,
                 newFishDescription,
-                downloadUrl
-
+                downloadUrl,
+                userID,
+                contact
         );
 
         assert id != null;
@@ -219,14 +222,14 @@ public class NewFishActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 newFishProgressBar.setVisibility(View.GONE);
-                Toast.makeText(NewFishActivity.this, "Success Uploaded Image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewFishActivity.this, "Success Posted Fish", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 newFishProgressBar.setVisibility(View.GONE);
-                Toast.makeText(NewFishActivity.this, "Failed to Upload Image URL", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewFishActivity.this, "Failed to Post Fish", Toast.LENGTH_SHORT).show();
             }
         });
 

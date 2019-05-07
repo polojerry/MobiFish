@@ -78,11 +78,13 @@ public class ProductFishRecyclerAdapter extends RecyclerView.Adapter<ProductFish
             NewFish mNewFish = newFishProducts.get(clickedPosition);
 
             String fishName = mNewFish.getFishName();
-            String fishDescription = mNewFish.getFishDescriprion();
+            String fishDescription = mNewFish.getFishDescription();
             String fishPrice = mNewFish.getFishPrice();
             String fishUrl = mNewFish.getFishImageURl();
+            String fishId = mNewFish.getFishId();
+            String contact = mNewFish.getFisherManContactNumber();
 
-            mOnClickListener.onFishItemClick(fishName, fishDescription, fishPrice,fishUrl);
+            mOnClickListener.onFishItemClick(fishName, fishDescription, fishPrice,fishUrl,fishId,contact);
 
         }
     }
@@ -93,6 +95,7 @@ public class ProductFishRecyclerAdapter extends RecyclerView.Adapter<ProductFish
          * Method that takes in 5 parameters that is , fishName, fishDescription, fishPrice, fishImageUrl
          * to be passed to the new Activity
          * */
-        void onFishItemClick(String fishName, String fishDescription, String fishPrice, String fishImageUrl);
+
+        void onFishItemClick(String fishName, String fishDescription, String fishPrice, String fishImageUrl, String fishId, String fisherManContactNumber);
     }
 }

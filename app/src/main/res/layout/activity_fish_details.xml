@@ -1,57 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".ui.FishDetailsActivity">
-
-    <ImageView
-        android:id="@+id/productFishDetailImage"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/nile_perch" />
+        android:layout_height="match_parent"
+        tools:context=".ui.FishDetailsActivity">
 
-    <TextView
-        android:id="@+id/productFishDetailName"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/aref_ruqaa"
-        android:text="Mbuta"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/productFishDetailImage"
-        app:layout_constraintStart_toStartOf="@+id/productFishDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/productFishDetailImage" />
+        <ImageView
+            android:id="@+id/productFishDetailImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/nile_perch" />
 
-    <TextView
-        android:id="@+id/productFishDetailDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
-        android:text="Fresh from the lake"
-        app:layout_constraintEnd_toEndOf="@+id/productFishDetailName"
-        app:layout_constraintStart_toStartOf="@+id/productFishDetailName"
-        app:layout_constraintTop_toBottomOf="@+id/productFishDetailName" />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constrat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="4dp"
+            android:background="#CC000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productFishDetailImage">
 
-    <TextView
-        android:id="@+id/productFishDetailPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="Ksh 800"
-        app:layout_constraintEnd_toEndOf="@+id/productFishDetailDescription"
-        app:layout_constraintStart_toStartOf="@+id/productFishDetailDescription"
-        app:layout_constraintTop_toBottomOf="@+id/productFishDetailDescription" />
+            <TextView
+                android:id="@+id/productFishDetailName"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/aref_ruqaa"
+                android:text="Mbuta"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/productFishDetailDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Fresh from the lake"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/productFishDetailName"
+                app:layout_constraintStart_toStartOf="@+id/productFishDetailName"
+                app:layout_constraintTop_toBottomOf="@+id/productFishDetailName" />
+
+            <TextView
+                android:id="@+id/productFishDetailPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Ksh 800"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/productFishDetailDescription"
+                app:layout_constraintStart_toStartOf="@+id/productFishDetailDescription"
+                app:layout_constraintTop_toBottomOf="@+id/productFishDetailDescription" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraitCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/constrat"
+            app:layout_constraintStart_toStartOf="@+id/constrat"
+            app:layout_constraintTop_toBottomOf="@+id/constrat">
+
+            <TextView
+                android:id="@+id/textQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/aldrich"
+                android:text="Quantity"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/subtractQuantity"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:text="-"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textQuantity" />
+
+            <Button
+                android:id="@+id/buttonQuantity"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="2"
+                app:layout_constraintStart_toEndOf="@+id/subtractQuantity"
+                app:layout_constraintTop_toBottomOf="@+id/textQuantity" />
+
+            <Button
+                android:id="@+id/addQuantity"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="+"
+                app:layout_constraintStart_toEndOf="@+id/buttonQuantity"
+                app:layout_constraintTop_toBottomOf="@+id/textQuantity" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

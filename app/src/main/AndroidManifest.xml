@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.polotechnologies.mobifish">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CustomerMainActivity"></activity>
+        <activity android:name=".ui.CartActivity"></activity>
+        <activity
+            android:name=".ui.FishDetailsMainActivity"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".ui.FisherManActivity"
+            android:label="@string/title_activity_fisher_man"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.CustomerMainActivity"
+            android:label="Customer" />
         <activity android:name=".ui.CreateAccountActivity" />
         <activity android:name=".ui.FishDetailsActivity" />
         <activity
@@ -22,13 +35,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ui.NewFishActivity"
             android:label="Fish Details"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".FisherManMainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
