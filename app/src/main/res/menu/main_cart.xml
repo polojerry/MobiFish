@@ -7,10 +7,4 @@
         android:orderInCategory="100"
         android:title="@string/add_to_cart"
         app:showAsAction="always" />
-    <item
-
-        android:id="@+id/action_view_card"
-        android:orderInCategory="100"
-        android:title="@string/view_cart"
-        app:showAsAction="never" />
 </menu>

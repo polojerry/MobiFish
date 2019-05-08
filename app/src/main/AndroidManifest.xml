@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CartActivity"></activity>
+        <activity android:name=".ui.CartDetailsActivity"
+            android:theme="@style/AppTheme1"
+            android:parentActivityName=".ui.CartActivity"/>
+        <activity android:name=".ui.CartActivity"
+            android:parentActivityName=".ui.CustomerMainActivity"/>
         <activity
             android:name=".ui.FishDetailsMainActivity"
             android:theme="@style/AppTheme1" />
@@ -36,7 +40,7 @@
         </activity>
         <activity
             android:name=".ui.NewFishActivity"
-            android:label="Fish Details"
+            android:label="New Fish"
             android:parentActivityName=".FisherManMainActivity" />
 
         <meta-data

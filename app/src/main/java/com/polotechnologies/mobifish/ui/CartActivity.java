@@ -8,6 +8,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,16 +26,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.polotechnologies.mobifish.R;
+import com.polotechnologies.mobifish.adapters.CartFishRecyclerAdapter;
 import com.polotechnologies.mobifish.adapters.ProductFishRecyclerAdapter;
 import com.polotechnologies.mobifish.dataModels.Cart;
 import com.polotechnologies.mobifish.dataModels.NewFish;
 
-public class CartActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    ImageView cartImage;
-    TextView cartFishName;
-    TextView cartFishPrice;
-    TextView cartFishTotalPrice;
+public class CartActivity extends AppCompatActivity implements  CartFishRecyclerAdapter.CartItemClickListener{
 
     Button placeOrder;
 
@@ -42,54 +44,95 @@ public class CartActivity extends AppCompatActivity {
 
     Context mContext;
     String contactNumber;
+
+    RecyclerView cartFishRecyclerView;
+    CartFishRecyclerAdapter cartRecyclerAdapter;
+    List<Cart> mCartItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        cartImage = findViewById(R.id.productFishCart);
-        cartFishName= findViewById(R.id.productFishNameCart);
-        cartFishPrice= findViewById(R.id.productFishPriceCart);
-        cartFishTotalPrice= findViewById(R.id.productFishTotalPrice);
-
-        placeOrder = findViewById(R.id.orderFish);
-
-
         mContext = this;
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
+        cartFishRecyclerView = findViewById(R.id.cartRecycler);
+
+        cartFishRecyclerView.setHasFixedSize(false);
+        cartFishRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mCartItems = new ArrayList<>();
+
+
         getLatestData(new CustomerMainActivity.OnDataReceiveCallback(){
             @Override
             public void onDataReceived(DataSnapshot mDataSnapshot) {
+                mCartItems.clear();
                 for (DataSnapshot newFishDataSnapshot : mDataSnapshot.getChildren()){
                     Cart myCart = newFishDataSnapshot.getValue(Cart.class);
 
-                    Glide.with(mContext)
-                            .load(myCart.getFishImageUrl())
-                            .into(cartImage);
-                    cartFishName.setText(myCart.getFishName());
-                    cartFishPrice.setText(myCart.getFishpriceEach());
-                    cartFishTotalPrice.setText(myCart.getFishTotalPrice());
+                    mCartItems.add(myCart);
 
-                    contactNumber = myCart.getConctactNumber();
 
                 }
+                cartRecyclerAdapter = new CartFishRecyclerAdapter(mContext,mCartItems, CartActivity.this);
+                cartFishRecyclerView.setAdapter(cartRecyclerAdapter);
+
             }
 
         });
 
-        placeOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
     }
 
     public interface OnDataReceiveCallback {
         void onDataReceived(DataSnapshot mDataSnapshot);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getLatestData(new CustomerMainActivity.OnDataReceiveCallback(){
+            @Override
+            public void onDataReceived(DataSnapshot mDataSnapshot) {
+                mCartItems.clear();
+                for (DataSnapshot newFishDataSnapshot : mDataSnapshot.getChildren()){
+                    Cart myCart = newFishDataSnapshot.getValue(Cart.class);
+
+                    mCartItems.add(myCart);
+
+
+                }
+                cartRecyclerAdapter = new CartFishRecyclerAdapter(mContext,mCartItems, CartActivity.this);
+                cartFishRecyclerView.setAdapter(cartRecyclerAdapter);
+
+            }
+
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getLatestData(new CustomerMainActivity.OnDataReceiveCallback(){
+            @Override
+            public void onDataReceived(DataSnapshot mDataSnapshot) {
+                mCartItems.clear();
+                for (DataSnapshot newFishDataSnapshot : mDataSnapshot.getChildren()){
+                    Cart myCart = newFishDataSnapshot.getValue(Cart.class);
+
+                    mCartItems.add(myCart);
+
+
+                }
+                cartRecyclerAdapter = new CartFishRecyclerAdapter(mContext,mCartItems, CartActivity.this);
+                cartFishRecyclerView.setAdapter(cartRecyclerAdapter);
+
+            }
+
+        });
     }
 
     private void getLatestData(final CustomerMainActivity.OnDataReceiveCallback callback) {
@@ -109,13 +152,18 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
-    public void composeSMSMessage(String jobContactName, String jobContact ) {
-
-        String x = "Hi "+ jobContactName +"i would like to apply for the Job: "  + " you Posted earlier";
-
-        Intent sendSms = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", jobContact, null));
-        sendSms.putExtra("sms_body", x);
-        startActivity(sendSms);
+    @Override
+    public void onFishItemClick(String fishName, String fishQuantity, String fishPriceEach, String totalPrice, String contactNumber, String ImageUrl, String cartId) {
+        Intent startCartDetailsActivity = new Intent(CartActivity.this, CartDetailsActivity.class);
+        startCartDetailsActivity.putExtra("fishName", fishName);
+        startCartDetailsActivity.putExtra("fishQuantity", fishQuantity);
+        startCartDetailsActivity.putExtra("fishPriceEach", fishPriceEach);
+        startCartDetailsActivity.putExtra("totalPrice", totalPrice);
+        startCartDetailsActivity.putExtra("contactNumber", contactNumber);
+        startCartDetailsActivity.putExtra("ImageUrl", ImageUrl);
+        startCartDetailsActivity.putExtra("cartId", cartId);
+        startActivity(startCartDetailsActivity);
     }
+
 
 }
