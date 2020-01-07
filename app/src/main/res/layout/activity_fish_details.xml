@@ -2,7 +2,7 @@
 <ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/nile_perch" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constrat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,9 +73,9 @@
                 app:layout_constraintStart_toStartOf="@+id/productFishDetailDescription"
                 app:layout_constraintTop_toBottomOf="@+id/productFishDetailDescription" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraitCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,8 +126,8 @@
                 app:layout_constraintStart_toEndOf="@+id/buttonQuantity"
                 app:layout_constraintTop_toBottomOf="@+id/textQuantity" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

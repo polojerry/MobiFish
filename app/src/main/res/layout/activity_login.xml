@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".LoginActivity"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".LoginActivity">
 
-
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/loginLogo"
         android:layout_width="200dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="100dp"
         android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_fish" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/button_background"
+        android:layout_marginTop="100dp"
         android:text="@string/login_button_text"
-        android:textAllCaps="false"
         android:textColor="@color/colorPrimaryText"
+        app:layout_constraintEnd_toStartOf="@+id/btn_signUp"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/loginLogo"
+        android:theme="@style/MobiFish.Widget.LoginButton"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signUp"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/button_background"
         android:text="@string/signUp_button_text"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryText"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_login"
-        app:layout_constraintTop_toBottomOf="@+id/loginLogo" />
+        app:layout_constraintTop_toTopOf="@+id/btn_login" />
 
-
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
