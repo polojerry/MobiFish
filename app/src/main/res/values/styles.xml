@@ -14,8 +14,17 @@
 
     <style name="MobiFish.Widget.LoginButton" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/colorAccent</item>
+    </style>
 
-
+    <style name="MobiFish.Widget.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@color/colorAccent</item>
+        <item name="hintTextColor">@color/colorAccent</item>
+        <item name="boxStrokeColor">@color/colorAccent</item>
+    </style>
+    <style name="MobiFish.Widget.TextInputLayout.ExposedDropDownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="hintTextAppearance">@color/colorAccent</item>
+        <item name="hintTextColor">@color/colorAccent</item>
+        <item name="boxStrokeColor">@color/colorAccent</item>
     </style>
 
 

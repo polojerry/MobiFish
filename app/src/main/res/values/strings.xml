@@ -29,5 +29,9 @@
     <string name="title_activity_fisher_man">Fisher Man</string>
     <string name="view_cart">View Cart</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_national_id_number">National ID Number</string>
+    <string name="hint_user_category">Category</string>
+    <string name="hint_user_account">Fisherman</string>
 
 </resources>
