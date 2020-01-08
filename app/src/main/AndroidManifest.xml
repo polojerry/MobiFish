@@ -12,20 +12,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme1"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.CartDetailsActivity"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".ui.CartActivity"/>
-        <activity android:name=".ui.CartActivity"
-            android:parentActivityName=".ui.CustomerMainActivity"/>
+        <activity android:name=".HostActivity"
+            android:theme="@style/AppTheme.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.CartDetailsActivity"
+            android:parentActivityName=".ui.CartActivity"
+            android:theme="@style/AppTheme1" />
+        <activity
+            android:name=".ui.CartActivity"
+            android:parentActivityName=".ui.CustomerMainActivity" />
         <activity
             android:name=".ui.FishDetailsMainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme1" />
         <activity
             android:name=".ui.FisherManActivity"
             android:label="@string/title_activity_fisher_man"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme1.NoActionBar" />
         <activity
             android:name=".ui.CustomerMainActivity"
             android:label="Customer" />
@@ -34,16 +44,11 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/LoginTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.NewFishActivity"
-            android:label="New Fish"
-            />
+            android:label="New Fish" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
