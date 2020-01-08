@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".fragments.LoginFragment"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:id="@+id/layoutLogin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btnLogin"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
-                style="@style/MobiFish.Widget.LoginButton"/>
+                style="@style/MobiFish.Widget.LoginButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

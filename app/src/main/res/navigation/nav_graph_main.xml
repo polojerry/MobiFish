@@ -17,5 +17,9 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.polotechnologies.mobifish.fragments.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <argument
+            android:name="userPhoneNumber"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -33,5 +33,6 @@
     <string name="hint_national_id_number">National ID Number</string>
     <string name="hint_user_category">Category</string>
     <string name="hint_user_account">Fisherman</string>
+    <string name="db_node_users">users</string>
 
 </resources>
