@@ -64,13 +64,14 @@ class SignUpFragment : Fragment() {
         mDatabaseReference.child(getString(R.string.db_node_users)).child(uid).setValue(createdUser)
                 .addOnSuccessListener {
                     Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
+
                 }.addOnFailureListener {
                     Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
                 }
     }
 
     private fun setFilledDropDownMenu() {
-        val accountsCategory = arrayOf("Customer", "FisherMan")
+        val accountsCategory = arrayOf(getString(R.string.user_category_customer), getString(R.string.user_category_fisher_man))
         val categoryAdapter  = ArrayAdapter<String>(
                 mContext,
                 R.layout.dropdown_menu_popup_item,

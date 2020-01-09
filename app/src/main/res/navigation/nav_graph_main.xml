@@ -13,13 +13,36 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_customerFragment"
+            app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_fisherManFragment"
+            app:destination="@id/fisherManFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.polotechnologies.mobifish.fragments.SignUpFragment"
-        android:label="SignUpFragment" >
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
         <argument
             android:name="userPhoneNumber"
             app:argType="string" />
+        <action
+            android:id="@+id/action_signUpFragment_to_fisherManFragment"
+            app:destination="@id/fisherManFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_customerFragment"
+            app:destination="@id/customerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fisherManFragment"
+        android:name="com.polotechnologies.mobifish.fragments.FisherManFragment"
+        android:label="FisherManFragment"
+        tools:layout="@layout/fragment_fisher_man"/>
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="com.polotechnologies.mobifish.fragments.CustomerFragment"
+        android:label="CustomerFragment"
+        tools:layout="@layout/fragment_customer"/>
 </navigation>
