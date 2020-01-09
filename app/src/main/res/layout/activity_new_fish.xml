@@ -48,7 +48,7 @@
             android:id="@+id/newFishName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/hint_fish_name" />
+            android:hint="@string/hint_fish_type" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

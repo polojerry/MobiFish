@@ -16,7 +16,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hint_fish_name">Fish Name</string>
+    <string name="hint_fish_type">Type of Fish</string>
     <string name="hint_price">Price</string>
     <string name="hint_description">Description</string>
     <string name="hint_post_fish">Post Fish</string>
@@ -40,5 +40,8 @@
 
     <string name="menu_cart">Cart</string>
     <string name="menu_sign_out">Sign Out</string>
+    <string name="hint_fish_description">Fish Description</string>
+    <string name="hint_fish_price">Fish Price per Kg</string>
+    <string name="button_text_new_fish">New Fish</string>
 
 </resources>

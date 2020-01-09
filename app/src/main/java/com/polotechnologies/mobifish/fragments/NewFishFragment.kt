@@ -30,11 +30,11 @@ class NewFishFragment : Fragment(), View.OnClickListener {
 
 
 
+
+
         return mBinding.root}
 
     override fun onClick(v: View?) {
         findNavController().navigate(R.id.action_newFishFragment_to_fisherManFragment)
     }
-
-
 }
