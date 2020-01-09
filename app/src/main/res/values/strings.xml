@@ -16,7 +16,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hint_fish_name">Fish Name</string>
+    <string name="hint_fish_type">Type of Fish</string>
     <string name="hint_price">Price</string>
     <string name="hint_description">Description</string>
     <string name="hint_post_fish">Post Fish</string>
@@ -29,5 +29,19 @@
     <string name="title_activity_fisher_man">Fisher Man</string>
     <string name="view_cart">View Cart</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_national_id_number">National ID Number</string>
+    <string name="hint_user_category">Category</string>
+    <string name="hint_user_account">Fisherman</string>
+
+    <string name="db_node_users">users</string>
+    <string name="user_category_fisher_man">FisherMan</string>
+    <string name="user_category_customer">Customer</string>
+
+    <string name="menu_cart">Cart</string>
+    <string name="menu_sign_out">Sign Out</string>
+    <string name="hint_fish_description">Fish Description</string>
+    <string name="hint_fish_price">Fish Price per Kg</string>
+    <string name="button_text_new_fish">New Fish</string>
 
 </resources>
