@@ -38,4 +38,7 @@
     <string name="user_category_fisher_man">FisherMan</string>
     <string name="user_category_customer">Customer</string>
 
+    <string name="menu_cart">Cart</string>
+    <string name="menu_sign_out">Sign Out</string>
+
 </resources>

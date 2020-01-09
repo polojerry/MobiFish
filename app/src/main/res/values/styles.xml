@@ -31,8 +31,12 @@
     <style name="MobiFish.Widget.Toolbar" parent="AppTheme">
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
-    <style name="MobiFish.Widget.FabAdd" parent="AppTheme">
-        <item name="srcCompat">@drawable/ic_add_circle</item>
+
+    <style name="MobiFish.Widget.FabAdd" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:src">@drawable/ic_add_circle</item>
+        <item name="tint">@android:color/white</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="elevation">8dp</item>
     </style>
 
 

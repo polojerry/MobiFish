@@ -20,8 +20,8 @@ import com.polotechnologies.mobifish.databinding.FragmentFisherManBinding
  * A simple [Fragment] subclass.
  */
 class CustomerFragment : Fragment(), Toolbar.OnMenuItemClickListener {
-    lateinit var mBinding: FragmentCustomerBinding
-    lateinit var mAuth:FirebaseAuth
+    private lateinit var mBinding: FragmentCustomerBinding
+    private lateinit var mAuth:FirebaseAuth
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

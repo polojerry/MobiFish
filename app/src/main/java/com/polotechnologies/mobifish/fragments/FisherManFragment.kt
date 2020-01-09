@@ -29,6 +29,10 @@ class FisherManFragment : Fragment(), Toolbar.OnMenuItemClickListener {
 
 
 
+
+        mBinding.fabAddNewFish.setOnClickListener{
+            findNavController().navigate(R.id.action_fisherManFragment_to_newFishFragment)
+        }
         return mBinding.root
     }
 
@@ -44,4 +48,5 @@ class FisherManFragment : Fragment(), Toolbar.OnMenuItemClickListener {
         }
         return true
     }
+
 }

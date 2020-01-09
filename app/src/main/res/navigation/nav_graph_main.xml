@@ -54,6 +54,10 @@
         <action
             android:id="@+id/action_fisherManFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_fisherManFragment_to_newFishFragment"
+            app:destination="@id/newFishFragment"
+            app:popUpTo="@+id/fisherManFragment" />
     </fragment>
     <fragment
         android:id="@+id/customerFragment"
@@ -63,5 +67,15 @@
         <action
             android:id="@+id/action_customerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newFishFragment"
+        android:name="com.polotechnologies.mobifish.fragments.NewFishFragment"
+        android:label="NewFishFragment"
+        tools:layout="@layout/fragment_new_fish">
+        <action
+            android:id="@+id/action_newFishFragment_to_fisherManFragment"
+            app:destination="@id/fisherManFragment"
+            app:popUpTo="@+id/fisherManFragment" />
     </fragment>
 </navigation>
