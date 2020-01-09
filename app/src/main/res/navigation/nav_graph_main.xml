@@ -15,10 +15,16 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_loginFragment_to_customerFragment"
-            app:destination="@id/customerFragment" />
+            app:destination="@id/customerFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_loginFragment_to_fisherManFragment"
-            app:destination="@id/fisherManFragment" />
+            app:destination="@id/fisherManFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -30,19 +36,32 @@
             app:argType="string" />
         <action
             android:id="@+id/action_signUpFragment_to_fisherManFragment"
-            app:destination="@id/fisherManFragment" />
+            app:destination="@id/fisherManFragment"
+            app:popUpTo="@+id/signUpFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpFragment_to_customerFragment"
-            app:destination="@id/customerFragment" />
+            app:destination="@id/customerFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/signUpFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fisherManFragment"
         android:name="com.polotechnologies.mobifish.fragments.FisherManFragment"
         android:label="FisherManFragment"
-        tools:layout="@layout/fragment_fisher_man"/>
+        tools:layout="@layout/fragment_fisher_man">
+        <action
+            android:id="@+id/action_fisherManFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/customerFragment"
         android:name="com.polotechnologies.mobifish.fragments.CustomerFragment"
         android:label="CustomerFragment"
-        tools:layout="@layout/fragment_customer"/>
+        tools:layout="@layout/fragment_customer">
+        <action
+            android:id="@+id/action_customerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

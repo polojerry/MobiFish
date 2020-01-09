@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">#ffffffff</item>
     </style>
 
     <style name="AppTheme.SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -22,10 +21,18 @@
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="boxStrokeColor">@color/colorAccent</item>
     </style>
+
     <style name="MobiFish.Widget.TextInputLayout.ExposedDropDownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="hintTextAppearance">@color/colorAccent</item>
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="boxStrokeColor">@color/colorAccent</item>
+    </style>
+
+    <style name="MobiFish.Widget.Toolbar" parent="AppTheme">
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+    <style name="MobiFish.Widget.FabAdd" parent="AppTheme">
+        <item name="srcCompat">@drawable/ic_add_circle</item>
     </style>
 
 

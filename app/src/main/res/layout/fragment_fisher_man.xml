@@ -20,10 +20,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbarFisherMan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:title="FisherMan"
-                    app:titleTextColor="@android:color/white">
+                    app:titleTextColor="@android:color/white"
+                    android:theme="@style/MobiFish.Widget.Toolbar">
                 </com.google.android.material.appbar.MaterialToolbar>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -31,6 +33,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.appbar.AppBarLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddNewFish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/MobiFish.Widget.FabAdd"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
