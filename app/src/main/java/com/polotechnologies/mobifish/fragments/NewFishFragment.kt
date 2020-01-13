@@ -7,12 +7,16 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -23,6 +27,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.polotechnologies.mobifish.R
 import com.polotechnologies.mobifish.databinding.FragmentCustomerBinding
 import com.polotechnologies.mobifish.databinding.FragmentNewFishBinding
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -30,6 +38,10 @@ import com.polotechnologies.mobifish.databinding.FragmentNewFishBinding
 class NewFishFragment : Fragment(), View.OnClickListener {
 
     val REQUEST_IMAGE_GET = 10
+    val REQUEST_IMAGE_CAPTURE = 11
+
+    lateinit var currentPhotoPath: String
+
     lateinit var mAuth: FirebaseAuth
     lateinit var mDatabaseReference: DatabaseReference
     lateinit var mBinding: FragmentNewFishBinding
@@ -74,7 +86,46 @@ class NewFishFragment : Fragment(), View.OnClickListener {
     }
 
     private fun captureImage() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(context!!.packageManager)?.also {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    // Error occurred while creating the File
+                    Log.d("@@IMAGE FILE CREATION@@", "Error Creating Image File")
+                    null
+                }
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                            context!!,
+                            "com.polotechnologies.fileprovider",
+                            it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
+        }
+
+    }
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(Date())
+        val storageDir: File = context!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        return File.createTempFile(
+                "JPEG_${timeStamp}_", /* prefix */
+                ".jpg", /* suffix */
+                storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
     }
 
     override fun onClick(v: View?) {
@@ -86,11 +137,16 @@ class NewFishFragment : Fragment(), View.OnClickListener {
         if (requestCode == REQUEST_IMAGE_GET && resultCode == Activity.RESULT_OK) {
             val thumbnail: Bitmap = data!!.getParcelableExtra("data")
             val fullPhotoUri: Uri = data.data!!
+            currentPhotoPath = fullPhotoUri.toString()
             // Do work with photo saved at fullPhotoUri
 
             Glide.with(this.context!!)
                     .load(fullPhotoUri)
                     .into(mBinding.imgFishImage)
+
+        }else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            val imageBitmap = data!!.extras!!.get("data") as Bitmap
+            mBinding.imgFishImage.setImageBitmap(imageBitmap)
         }
     }
 
