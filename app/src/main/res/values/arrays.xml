@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="image_locations">
+        <item>From Camera</item>
+        <item>From Gallery</item>
+    </string-array>
+
+</resources>
