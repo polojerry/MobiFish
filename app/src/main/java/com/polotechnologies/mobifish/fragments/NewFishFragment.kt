@@ -12,10 +12,12 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
@@ -39,7 +41,7 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  */
-class NewFishFragment : Fragment(), View.OnClickListener {
+class NewFishFragment : Fragment(), View.OnClickListener, Toolbar.OnMenuItemClickListener {
 
     var currentPhotoPath: String = ""
 
@@ -62,10 +64,7 @@ class NewFishFragment : Fragment(), View.OnClickListener {
         mBinding.imgFishImage.setOnClickListener{
             selectImageLocation()
         }
-
-        mBinding.btnPostNewFish.setOnClickListener{
-            postNewFish()
-        }
+        mBinding.toolbarNewFish.setOnMenuItemClickListener(this)
 
         return mBinding.root}
 
@@ -92,6 +91,12 @@ class NewFishFragment : Fragment(), View.OnClickListener {
 
         }
 
+        if(mBinding.etFishQuantity.text.isNullOrEmpty()){
+            mBinding.etFishQuantity.error = "Fish Price is required"
+            return
+
+        }
+
         uploadFish()
     }
 
@@ -107,6 +112,7 @@ class NewFishFragment : Fragment(), View.OnClickListener {
                 mBinding.etFishType.text.toString(),
                 mBinding.etFishDescription.text.toString(),
                 mBinding.etFishPrice.text.toString(),
+                mBinding.etFishQuantity.text.toString(),
                 imageUrl,
                 mAuth.currentUser!!.uid
 
@@ -115,7 +121,7 @@ class NewFishFragment : Fragment(), View.OnClickListener {
         mDatabaseReference.child("fish").child(fishId).setValue(newFish).addOnSuccessListener {
             Toast.makeText(context,"Fish Uploaded Successfully", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
-            Log.d("New FIsh Upload", it.localizedMessage.toString())
+            Log.d("New Fish Upload", it.localizedMessage.toString())
             Toast.makeText(context,"Failed to Upload Fish", Toast.LENGTH_SHORT).show()
         }
 
@@ -239,6 +245,13 @@ class NewFishFragment : Fragment(), View.OnClickListener {
     companion object {
         const val REQUEST_IMAGE_GET = 10
         const val REQUEST_IMAGE_CAPTURE = 11
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        if(item!!.itemId == R.id.action_new_fish){
+            postNewFish()
+        }
+        return true
     }
 
 }

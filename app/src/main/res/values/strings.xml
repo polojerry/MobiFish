@@ -43,5 +43,7 @@
     <string name="hint_fish_description">Fish Description</string>
     <string name="hint_fish_price">Fish Price per Kg</string>
     <string name="button_text_new_fish">New Fish</string>
+    <string name="hint_fish_quantity">Quantity Available</string>
+    <string name="menu_new_fish">New Fish</string>
 
 </resources>

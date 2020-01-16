@@ -26,18 +26,19 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/MobiFish.Widget.Toolbar"
                     app:title="New Fish"
-                    app:titleTextColor="@android:color/white"/>
+                    app:titleTextColor="@android:color/white"
+                    app:menu="@menu/menu_new_fish"/>
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgFishImage"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-                app:srcCompat="@drawable/ic_add_black"/>
+                app:srcCompat="@drawable/ic_add_black" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutFishType"
@@ -65,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +77,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/hint_fish_description"
-                    android:inputType="textCapSentences"/>
+                    android:inputType="textCapSentences" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutFishQuantity"
+                style="@style/MobiFish.Widget.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutFishDescription">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFishQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/hint_fish_quantity"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -85,32 +106,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutFishDescription">
+                app:layout_constraintTop_toBottomOf="@+id/layoutFishQuantity">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFishPrice"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/hint_fish_price"
-                    android:inputType="textCapSentences"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPostNewFish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/button_text_new_fish"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutFishPrice" />
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,6 +5,7 @@ data class Fish(
         var fishType : String = "",
         var fishDescription : String = "",
         var fishPrice : String = "",
+        var fishQuantity: String  = "",
         var fishImageUrl : String = "",
         var fisherManId: String = ""
 )
