@@ -4,6 +4,7 @@ package com.polotechnologies.mobifish.fragments
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -76,6 +77,7 @@ class LoginFragment : Fragment() {
                 PhoneBuilder().build())
 
         // Create and launch sign-in intent
+
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()

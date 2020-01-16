@@ -20,11 +20,15 @@ import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 import com.polotechnologies.mobifish.R
+import com.polotechnologies.mobifish.dataModels.Fish
 import com.polotechnologies.mobifish.databinding.FragmentCustomerBinding
 import com.polotechnologies.mobifish.databinding.FragmentNewFishBinding
 import java.io.File
@@ -37,13 +41,12 @@ import java.util.*
  */
 class NewFishFragment : Fragment(), View.OnClickListener {
 
-    val REQUEST_IMAGE_GET = 10
-    val REQUEST_IMAGE_CAPTURE = 11
-
-    lateinit var currentPhotoPath: String
+    var currentPhotoPath: String = ""
 
     lateinit var mAuth: FirebaseAuth
     lateinit var mDatabaseReference: DatabaseReference
+    lateinit var mStorageReference: StorageReference
+
     lateinit var mBinding: FragmentNewFishBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,25 +57,105 @@ class NewFishFragment : Fragment(), View.OnClickListener {
 
         mAuth = FirebaseAuth.getInstance()
         mDatabaseReference = FirebaseDatabase.getInstance().reference
-
+        mStorageReference = FirebaseStorage.getInstance().reference
 
         mBinding.imgFishImage.setOnClickListener{
-            Toast.makeText(context,"Clicked", Toast.LENGTH_SHORT).show()
             selectImageLocation()
         }
 
+        mBinding.btnPostNewFish.setOnClickListener{
+            postNewFish()
+        }
 
         return mBinding.root}
+
+    private fun postNewFish() {
+        if(currentPhotoPath == ""){
+            Toast.makeText(context, "Image Required", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(mBinding.etFishType.text.isNullOrEmpty()){
+            mBinding.etFishType.error = "Fish Type Required"
+            return
+
+        }
+
+        if(mBinding.etFishDescription.text.isNullOrEmpty()){
+            mBinding.etFishDescription.error = "Fish Description Required"
+            return
+
+        }
+        if(mBinding.etFishPrice.text.isNullOrEmpty()){
+            mBinding.etFishPrice.error = "Fish Price is required"
+            return
+
+        }
+
+        uploadFish()
+    }
+
+    private fun uploadFish() {
+        val fishId  = mDatabaseReference.child("fish")
+                .push()
+                .key
+                .toString()
+
+        val imageUrl = uploadFishImage(fishId)
+        val newFish = Fish(
+                fishId,
+                mBinding.etFishType.text.toString(),
+                mBinding.etFishDescription.text.toString(),
+                mBinding.etFishPrice.text.toString(),
+                imageUrl,
+                mAuth.currentUser!!.uid
+
+        )
+
+        mDatabaseReference.child("fish").child(fishId).setValue(newFish).addOnSuccessListener {
+            Toast.makeText(context,"Fish Uploaded Successfully", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Log.d("New FIsh Upload", it.localizedMessage.toString())
+            Toast.makeText(context,"Failed to Upload Fish", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    private fun uploadFishImage(fishId: String): String {
+        var imageUrl = ""
+        val imageRef = mStorageReference.child("fish/$fishId.jpg")
+
+        val uploadTask = imageRef.putFile((Uri.parse(currentPhotoPath)))
+        val urlTask = uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            imageRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                imageUrl = task.result.toString()
+            } else {
+                Toast.makeText(context, "Failed to Upload Image", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
+        return imageUrl
+
+    }
 
     private fun selectImageLocation() {
         val imageDialog = AlertDialog.Builder(context!!)
         imageDialog.setTitle("Image Location")
-        imageDialog.setItems(R.array.image_locations, DialogInterface.OnClickListener { _, which ->
+        imageDialog.setItems(R.array.image_locations) { _, which ->
             when(which){
                 0 -> captureImage()
                 1 -> selectFromGallery()
             }
-        })
+        }
         imageDialog.show()
     }
 
@@ -86,7 +169,7 @@ class NewFishFragment : Fragment(), View.OnClickListener {
     }
 
     private fun captureImage() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+        /*Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             // Ensure that there's a camera activity to handle the intent
             takePictureIntent.resolveActivity(context!!.packageManager)?.also {
                 // Create the File where the photo should go
@@ -109,7 +192,7 @@ class NewFishFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
-
+*/
     }
 
 
@@ -135,7 +218,10 @@ class NewFishFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_GET && resultCode == Activity.RESULT_OK) {
-            val thumbnail: Bitmap = data!!.getParcelableExtra("data")
+            if(data!!.hasExtra("data")){
+                val thumbnail: Bitmap = data!!.getParcelableExtra("data")
+            }
+
             val fullPhotoUri: Uri = data.data!!
             currentPhotoPath = fullPhotoUri.toString()
             // Do work with photo saved at fullPhotoUri
@@ -148,6 +234,11 @@ class NewFishFragment : Fragment(), View.OnClickListener {
             val imageBitmap = data!!.extras!!.get("data") as Bitmap
             mBinding.imgFishImage.setImageBitmap(imageBitmap)
         }
+    }
+
+    companion object {
+        const val REQUEST_IMAGE_GET = 10
+        const val REQUEST_IMAGE_CAPTURE = 11
     }
 
 }
